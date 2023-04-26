@@ -27,7 +27,7 @@
         <p style="font-size:70%">The webserver is the implementation of the paper "UniDL4BioPep: A universal deep learning architecture for binary classification in peptide bioactivity"</p>
         <p style="font-size:70%">Notice: For very large dataset processing: please download our model locally or contact us at zhenjiao@ksu.edu or yonghui@ksu.edu for more assistant.  </p>
 	<fieldset>
-        <p style="font-size:80%">Quick output version: 1. Choose a model  → 2. Input a peptide sequence</p>
+   
         <form action="{{url_for('pred_with_file')}}" method="post" enctype="multipart/form-data">
             <input type="text" name="Kernel weight" placeholder="input the the weight in gram" required="required" />
             <label for="my_image">Choose a file to upload</label>
@@ -44,15 +44,7 @@
         <br>
 
 
-          <h4>Usage of the webserver:</h4>
-          <p style="font-size:80%"> Example for “Quick output version” : </p>
-          <p style="font-size:70%">1. Select “Antihypertensive” model for antihypertensive activity prediction.   →   →  →  2. Insert a peptide or protein sequence, “VPP” →   →  →  3. Click “Run”→   →  → 4. The result will be returned in seconds below the “Run” button</p>
-          <p style="font-size:70%">Notice: it also support multiple sequence at the same time. Just input as “VPP,IPP,CCL,AGR” (sequences are separated by comma, no space)</p>
-          <p style="font-size:80%"> Example for “Large-scale output version:” : </p>
-          <p style="font-size:70%">1. Prepare your xls, xlsx, txt or fasta files  →  →  → 2. Upload the file through “Choose File” botton  →   →  → 3. Select one or several models →   →  → 4. Click “Run” →   →  → 5. It will automatically download your results. </p>
-          <p style="font-size:70%">Notice: File preparation should follow the examples under this repository https://github.com/dzjxzyd/UniDL4BioPep_webserver/tree/main/Example%20uploading%20files </p>
-          <h4>Detailed explaination of the activity abbreviation</h4>
-	  <p style="font-size:70%"> Antihypertensive： Angiotensin-converting enzyme inhibitory activity (main target in for hypertension); DPPIV: dipeptidyl peptidase IV (DPPIV) inhibitory activity (main target for diabetes); AMP: antimicrobial activity; AMAP: antimalarial activity (main and alternative is corresponding to two datasets; QS: quorum-sensing activity; ACP: anticancer activity: MRSA: anti-methicillin-resistant S. aureus strains activity); TTCA: tumor T cell antigens; BBP: blood-brain barrier peptide; APP: anti-parasitic activity; FL: is just an indicator of the Focal loss as loss function version, typically, we recommend the FL-version if available (for balanced datassets, we do not using FL for model generation, but you can try it based our our template tutorial in github) </p>
-      </div>
+          
+	 </div>
   </body>
   </html>
