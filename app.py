@@ -59,7 +59,7 @@ def kernel_input(num):
     if num == "1":
         name = "wheat"
     if num == "2":
-        name = "corn"
+        name = "soybean"
     if num == "3":
         name = "sorghum"
     return name
