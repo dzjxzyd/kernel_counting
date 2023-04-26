@@ -29,24 +29,20 @@
 	<fieldset>
         <p style="font-size:80%">Quick output version: 1. Choose a model  → 2. Input a peptide sequence</p>
         <form action="{{url_for('pred_with_file')}}" method="post" enctype="multipart/form-data">
-            <label for="kernel_type">Choose kernel type:</label>
-            <select name="kernel_type" id="model2" required="required">
-                <option value="1">Wheat</option>
-                <option value="2">corn</option>
-                <option value="3">sorghum</option>
-                <!-- <option value="4">yellow pea</option> -->
-                <!-- <option value="5">chickpe</option> -->
-            </select>
-
+            <input type="text" name="Kernel weight" placeholder="input the the weight in gram" required="required" />
             <label for="my_image">Choose a file to upload</label>
+            <label for="Kernel weight">Input weight</label>
             <input type="file" name="input_image" id="my_file" accept=".jeg,.JPG,.jpeg,.png"/>
             <button type="submit" class="btn btn-outline-primary">Run</button>
         </form>
         <br>
         <p style="color:cyan"> {{ prediction_text }} </p>
         <br>
+
         <form action="{{ url_for('download_output') }}" method="post" enctype="multipart/form-data">
             <button type="submit">Download Output Image</button>
+        <br>
+
 
           <h4>Usage of the webserver:</h4>
           <p style="font-size:80%"> Example for “Quick output version” : </p>
