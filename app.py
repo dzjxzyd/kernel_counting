@@ -54,15 +54,8 @@ def graph_reading_processing(file_location_name):
 
     return labels.max(), color.label2rgb(labels, bg_label=0)
 
-def kernel_input(num):
-    name = str()
-    if num == "1":
-        name = "wheat"
-    if num == "2":
-        name = "soybean"
-    if num == "3":
-        name = "sorghum"
-    return name
+out_put_number, graph_data = graph_reading_processing('S15.JPG')
+
 # Set allowed file extensions
 ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png','tiff','tif']
 app.config['UPLOAD_FOLDER'] = 'input'
@@ -73,9 +66,8 @@ def home():
 
 @app.route('/pred_with_file', methods=['POST'])
 def pred_with_file():
-    kernel_type = [str(x) for x in request.form.values()]
-    kernel_name_index = kernel_type[0]
-    kernel_name = kernel_input(kernel_name_index)
+    weight_input = [str(x) for x in request.form.values()]
+    weight = float(weight_input[0])
     # Delete existing files that are in the 'input' folder
     input_dir = 'input'
     try:
@@ -96,14 +88,16 @@ def pred_with_file():
 
     # Process the image and get the output data
     out_put_number, graph_data = graph_reading_processing(save_location_input_image)
-
+    # calculate the 100 kernel weight
+    thousand_weight = weight/float(out_put_number)*1000
+    hundred_weight = weight/float(out_put_number)*100
     # Save the output image
     save_location_output_image = os.path.join(input_dir, 'output.png')
     plt.imsave(save_location_output_image, graph_data)
-
+    final_output = 'Input weight:'+ str(weight)+'\n'+'Number of grains are:' + str(round(out_put_number,2)) +'\n'+ 'Thousand kernel weight: '+ str(round(thousand_weight,2)) +'\n'+ 'Hundred kernel weight: ' + str(round(hundred_weight,2))
     # Return the output image and the prediction text
 
-    return render_template('index.html', prediction_text='Number of '+kernel_name+' grains are: {}'.format(out_put_number))
+    return render_template('index.html', prediction_text=final_output)
 
 @app.route('/download_output', methods=['POST'])
 def download_output():
