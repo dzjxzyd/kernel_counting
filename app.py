@@ -9,7 +9,6 @@ from skimage import filters, feature, measure, color
 from skimage.segmentation import watershed
 from PIL import Image
 import cv2 as cv
-import cv2
 from flask import Flask, request, url_for, redirect, render_template, send_from_directory, send_file
 from werkzeug.utils import secure_filename
 
@@ -17,12 +16,12 @@ app = Flask(__name__)
 
 def graph_reading_processing(file_location_name):
     # load file
-    img = cv2.imread(file_location_name)
-    grayscale_Image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    ret, thresh_img = cv2.threshold(grayscale_Image, 120, 255, cv2.THRESH_BINARY)
+    img = cv.imread(file_location_name)
+    grayscale_Image = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+    ret, thresh_img = cv.threshold(grayscale_Image, 120, 255, cv.THRESH_BINARY)
     # show(thresh_img)
     kernel =np.ones((3),np.uint8)
-    clear_image = cv2.morphologyEx(thresh_img,cv2.MORPH_OPEN, kernel, iterations=8)
+    clear_image = cv.morphologyEx(thresh_img,cv.MORPH_OPEN, kernel, iterations=8)
     # show(clear_image)
 
     label_image = clear_image.copy()
